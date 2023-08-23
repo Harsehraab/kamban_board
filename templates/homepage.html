@@ -1,0 +1,109 @@
+<DOCTYPE html>
+	<head>
+		<!--character encoding-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--page title--> 
+		<title>Home</title>
+
+		<!--bootstrap-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+		<!--style.css-->
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}"/>
+
+  </head>
+	<body>
+ 
+
+  <div class="container py-3">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Kamban Board</h1>
+      <p class="fs-5 text-muted">Harsehraab Singh Sarao</p>
+    </div>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img class="mb-4" src="{{url_for('static', filename='profile_pic.jpg')}}" alt width="72" height="57">
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <div class="btn-group">
+        <a href="/createlist" class="btn btn-primary active" aria-current="page">Add list</a>
+        <a href="/createcard" class="btn btn-primary">Add card</a>
+        <a href="/editlist" class="btn btn-primary">Edit list</a>
+        <a href="/edittask" class="btn btn-primary">Edit card</a>
+        <a href="/deltask" class="btn btn-primary">Delete card</a>
+        <a href="/dellist" class="btn btn-primary">Delete list</a>
+        <a href="/mark" class="btn btn-primary">Mark as done</a>
+        <a href="/plot" class="btn btn-primary">Summary</a>
+      </nav>
+    </div>
+  </div>
+
+    
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      {% for alist in listall %}
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{ alist["list_title"] }}</h4>
+            <h5  class="my-0 fw-normal">List No.: {{ alist["list_id"] }}</h5>
+          </div>
+          {% for acard in cardall %}
+                {% if alist["list_id"] == acard["list_id"] %}
+                  {%if acard["card_deadline"] < today %}
+                  <div class="card-body bg-danger text-white">
+            <h1 class="card-title pricing-card-title">{{ acard["card_title"] }}<small class="text-muted fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>DEADLINE: {{acard["card_deadline"]}}</li>
+              <li>STATUS: {{acard["card_status"]}}</li>
+              <li>DESCRIPTION: {{acard["card_description"]}}</li>
+              <li>LIST ID: {{acard["list_id"]}}</li>
+              <li>DATE CREATED: {{acard["date_and_time"]}}</li>
+              <li>DATE UPDATED: {{acard["date_updated"]}}</li>
+              <li>DATE COMPLETED: {{ acard["time_completed"] }}</li>
+            </ul>
+            </form>
+          </div>
+                  {% elif acard["card_status"] == "Done" %}
+          <div class="card-body bg-success text-white">
+            <h1 class="card-title pricing-card-title">{{ acard["card_title"] }}<small class="text-muted fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>DEADLINE: {{acard["card_deadline"]}}</li>
+              <li>STATUS: {{acard["card_status"]}}</li>
+              <li>DESCRIPTION: {{acard["card_description"]}}</li>
+              <li>LIST ID: {{acard["list_id"]}}</li>
+              <li>DATE CREATED: {{acard["date_and_time"]}}</li>
+              <li>DATE UPDATED: {{acard["date_updated"]}}</li>
+              <li>DATE COMPLETED: {{ acard["time_completed"] }}</li>
+            </ul>
+            </form>
+          </div>
+                  {% else %}
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ acard["card_title"] }}<small class="text-muted fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>DEADLINE: {{acard["card_deadline"]}}</li>
+              <li>STATUS: {{acard["card_status"]}}</li>
+              <li>DESCRIPTION: {{acard["card_description"]}}</li>
+              <li>LIST ID: {{acard["list_id"]}}</li>
+              <li>DATE CREATED: {{acard["date_and_time"]}}</li>
+              <li>DATE UPDATED: {{acard["date_updated"]}}</li>
+              <li>DATE COMPLETED: {{acard["time_updated"]}}</li>
+            </ul>
+            </form>
+          </div>
+            {%endif%}
+          {%endif%}
+        {%endfor%}
+        </div>
+      </div>
+      {%endfor%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

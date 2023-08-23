@@ -1,0 +1,74 @@
+<DOCTYPE html>
+	<head>
+		<!--character encoding-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--page title--> 
+		<title>Summary</title>
+
+		<!--bootstrap-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+		<!--style.css-->
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}"/>
+
+  </head>
+	<body>
+ 
+
+  <div class="container py-3">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Kamban Board</h1>
+      <p class="fs-5 text-muted">Harsehraab Singh Sarao</p>
+    </div>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img class="mb-4" src="{{url_for('static', filename='profile_pic.jpg')}}" alt width="72" height="57">
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <div class="btn-group">
+        <a href="/createlist" class="btn btn-primary active" aria-current="page">Add list</a>
+        <a href="/createcard" class="btn btn-primary">Add card</a>
+        <a href="/editlist" class="btn btn-primary">Edit list</a>
+        <a href="/edittask" class="btn btn-primary">Edit card</a>
+        <a href="/deltask" class="btn btn-primary">Delete card</a>
+        <a href="/dellist" class="btn btn-primary">Delete list</a>
+        <a href="/mark" class="btn btn-primary">Mark as done</a>
+        <a href="/plot" class="btn btn-primary">Summary</a>
+      </nav>
+    </div>
+  </div>
+  
+    <main class="w-100 m-auto">
+    <div class="container">
+    <div class = "row">
+      <div class="col card-body form-login text-center">
+         <form class="form-login text-center" action = "/plot" method = "post" >
+    <div class="form-floating">
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
+         </div>
+    </form>
+                <h1 class="card-title pricing-card-title">
+                  
+                  Stats<small class="text-muted fw-light"></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  {% for alist in listall %}
+                  <li>List id: {{alist["list_id"]}} contains {{ cards_per_list[alist["list_id"]]}} cards</li>
+                  {%endfor%}
+                  <li>Tasks completed: {{no_of_tasks_completed}}</li>
+                  <li>Tasks that crossed deadline: {{crossed_deadline}}</li>
+                </ul>
+              </div>
+      <div class="col card-body form-login text-center">
+        <a href="" class="d-flex align-items-center text-dark text-decoration-none">
+    <img class="mb-4 text-centealign-items-centerr" src="{{url_for('static', filename='output.jpg')}}" alt width="720" height="570"></a>
+      </div>
+    </div>
+    </div>
+    </main> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

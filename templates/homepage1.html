@@ -1,0 +1,125 @@
+<DOCTYPE html>
+	<head>
+		<!--character encoding-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--page title--> 
+		<title>Login</title>
+
+		<!--bootstrap-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+		<!--style.css-->
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}"/>
+	
+	</head>
+	<body>
+    <div class="btn-group">
+  <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
+  <a href="#" class="btn btn-primary">Link</a>
+  <a href="#" class="btn btn-primary">Link</a>
+</div>
+		<h2> ADD LIST </h2>
+		<form action = "/api/list/new" method = "post">
+         <p>Title</p>
+         <p><input type = "text" name = "ltitle" /></p>
+         <p>Description</p>
+         <p><input type = "text" name = "ldescription" /><p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>   
+
+      <h2> ADD CARD </h2>
+		<form action = "/api/card/new" method = "post">
+         <p>Title</p>
+         <p><input type = "text" name = "ctitle" /></p>
+         <p>Status</p>
+         <p><input type = "text" name = "cstatus" /></p>
+         <p>Deadline</p>
+         <p><input type = "text" name = "cdeadline" /></p>
+         <p>Description</p>
+      <p><input type = "text" name = "cdescription" /></p>
+         <p>list number</p>
+         <p><input type = "text" name = "clistnumber" /><p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>   
+
+      <h2> EDIT CARD </h2>
+		<form action = "/api/card/edit" method = "post">
+         <p>Current Title</p>
+         <p><input type = "text" name = "coldtitle" /></p>
+         <p>New Title</p>
+         <p><input type = "text" name = "cnewtitle" /></p>
+         <p>New Content</p>
+         <p><input type = "text" name = "cnewcontent" /><p>
+        <p>Status</p>
+         <p><input type = "text" name = "cnewstatus" /></p>
+         <p>Deadline</p>
+         <p><input type = "text" name = "cnewdeadline" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form> 
+
+      <h2> EDIT LIST </h2>
+        <form action = "/api/list/edit" method = "post">
+         <p>Current Title</p>
+         <p><input type = "text" name = "loldtitle" /></p>
+         <p>New Title</p>
+         <p><input type = "text" name = "lnewtitle" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>   
+
+      <h2> REMOVE CARD </h2>
+		<form action = "/api/card/remove" method = "post">
+         <p>Title</p>
+         <p><input type = "text" name = "crtitle" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form> 
+
+      <h2> REMOVE LIST </h2>
+		<form action = "/api/list/remove" method = "post">
+         <p>Title</p>
+         <p><input type = "text" name = "lrtitle" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>   
+        
+     
+        <h2> Create Account </h2>
+        <form action = "/api/create/account" method = "post">
+            <p>Firstname</p>
+            <p><input type = "text" name="rfirstname" /></p>
+            <p>Lastname</p>
+            <p><input type = "text" name="rlastname" /></p>
+            <p>Username</p>
+            <p><input type = "text" name = "rusername" /></p>
+            <p>Password</p>
+            <p><input type = "text" name = "rpassword" /></p>
+            <p><input type = "submit" value = "submit" /></p>
+      </form>   
+		<div class="container overflow-hidden text-center">
+  		<div class="row gx-5">
+    		{% for alist in listall %}
+    			<div class="col">
+     				<div class="p-3 border bg-light">
+     					<h2>{{ alist["list_title"] }}</h2>
+     					{% for acard in cardall %}
+                {% if alist["list_id"] == acard["list_id"] %}
+                  <div class="p-3 border bg-light">
+     							{{ acard["card_title"] }}
+                  </div>
+                  <div class="p-3 border bg-light">
+                  {{ acard["card_deadline"] }}
+                  </div>
+                  <div class="p-3 border bg-light">
+                  {{ acard["card_status"] }}
+     						  </div>
+                  </div>
+                {%endif%}
+     					{% endfor %}	
+     				</div>
+    			</div>
+      {%endfor%}
+		</div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+	</body>
+</html>	
