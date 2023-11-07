@@ -1,6 +1,5 @@
-﻿\# KAMBAN BOARD
-
-\#### Video Demo: https://www.youtube.com/watch?v=cly9z34XhtE
+﻿KAMBAN BOARD
+Video Demo: https://www.youtube.com/watch?v=cly9z34XhtE
 
 \#### Description: A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow).
 Used for tracking tasks, can have multiple lists,each list will have system will automatically capture the card created datetime and also card last updated datetime system will also automatically capture task completed datetime.
