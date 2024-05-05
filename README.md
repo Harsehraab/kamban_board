@@ -23,12 +23,11 @@ Commitment point — Kanban teams often have a backlog for their board. This is 
 Delivery point — The delivery point is the end of a kanban team’s workflow. For most teams, the delivery point is when the product or service is in the hands of the customer. The team’s goal is to take cards from the commitment point to the delivery point as fast as possible. The elapsed time between the two is the called Lead Time. Kanban teams are continuously improving to decrease their lead time as much as possible
 
 
-TODO
 
 - Flask for application code
 - Jinja2 templates + Bootstrap for HTML generation and styling
 - SQLite for data storage
-- All demos should be possible on a standalone platform like replit.com and should not require setting up new servers for database and frontend management
+- All demos should be possible on a standalone platform and should not require setting up new servers for database and frontend management
 
 
 - Used for tracking tasks
